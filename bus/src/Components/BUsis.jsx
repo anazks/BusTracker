@@ -11,6 +11,7 @@ function BUsis(props) {
   
   const [bus,setBus]=useState([])
   const [location,setLocation] = useState([])
+  const [geolocation,setGeolocation] = useState([])
   if(props){
    
     // console.log(props.bus,"props")
@@ -18,22 +19,65 @@ function BUsis(props) {
   }
   useEffect(() => {
     try {
-        Axios.get('/getBus').then((response)=>{
-            if(response){
-              setBus(response.data)
-              console.log(response.data)
+      Axios.get('/getBus').then((response)=>{
+        if(response){
+          setBus(response.data)
+          console.log(response.data)
+        }
+    })
+    console.log("our location")
+      const getLocation = () => {
+        if (navigator.geolocation) {
+          navigator.geolocation.getCurrentPosition(
+            
+            (position) => {
+              const latitude = position.coords.latitude;
+              const longitude = position.coords.longitude;
+              const accuracy = position.coords.accuracy;
+              console.log(position)
+              setGeolocation({
+                latitude,
+                longitude,
+                accuracy,
+              });
+            },
+            
+            (error) => {
+              console.error('Error getting location:', error.message);
+              setGeolocation(null);
             }
-        })
-        let latitude =  10.0080168;
-        let longitude = 76.3289937;
-        Axios.get(`https://api.opencagedata.com/geocode/v1/json?q=${latitude}+${longitude}&key=8cd8f366fda24ba2a495b8520900cc49`).then((response)=>{
-              console.log(response.data.results[0].components.road)
-              setLocation(response.data.results[0].components)
-        })
-    } catch (error) {
-      console.log(error)
+          );
+        } else {
+          console.error('Geolocation is not supported by this browser.');
+          setGeolocation(null);
+        }
+      };
+  
+      getLocation();
+    }catch(error){
+        console.log(error)
     }
+
+        
   }, [])
+
+
+
+  const chekPlace =()=>{
+        try {
+          console.log(geolocation.latitude,"geolocation----")
+        
+          let latitude = geolocation.latitude;
+          let longitude = geolocation.longitude;
+          Axios.get(`https://api.opencagedata.com/geocode/v1/json?q=${latitude}+${longitude}&key=8cd8f366fda24ba2a495b8520900cc49`).then((response)=>{
+                console.log(response.data.results,"Location-------------------")
+                setLocation(response.data.results[0].components)
+          })
+      } catch (error) {
+        console.log(error)
+      }
+      
+  }
   
   return (
     <div className='cards'>
@@ -59,7 +103,7 @@ function BUsis(props) {
                                      <span><b>  Arraived at : <i>{location.road} <MdLocationOn /></i></b></span>
                                       </div>
                                       <div>
-                                          <button className='notification'>Notify <MdNotificationsActive /></button>
+                                          <button className='notification' onClick={()=>chekPlace()}>Notify <MdNotificationsActive /></button>
                                       </div>
                                 </div>
                                   <div className='stops'> <br />

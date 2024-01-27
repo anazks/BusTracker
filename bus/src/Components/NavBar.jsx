@@ -8,11 +8,14 @@ import { IoSearch } from "react-icons/io5";
 import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
 import SearchResult from './SearchResult';
+import axios from 'axios';
 function NavBar() {
         const [travel,settravel]=useState([])   
         const searchBusRef = useRef(null);
         const [bus,setbus] = useState([])
         const [show, setShow] = useState(false);
+        const [fromValue, setFromValue] = useState('');
+        const [toValue, setToValue] = useState('');
 
         const handleClose = () => setShow(false);
         const handleShow = () => setShow(true);
@@ -41,7 +44,7 @@ function NavBar() {
                                                 console.log(response)
                                                 setShow(true);
                                                 setbus(response.data[0])
-                                                console.log(bus,"from bus")
+                                                console.log(response.data[0],"","from bus")
                                         }else{
                                                 console.log("no data")
                                         }
@@ -50,6 +53,23 @@ function NavBar() {
                                }
                 })
               }
+
+              const handleSearch = () => {
+                // Do something with fromValue and toValue
+                
+                console.log('From:', fromValue);
+                console.log('To:', toValue);
+                let rootData = {
+                        fromValue,
+                        toValue
+                }
+                console.log(rootData)
+                Axios.post("/getBusByRoot",rootData).then((response)=>{
+                        console.log(response.data)
+                        setShow(true);
+                        setbus(response.data[0],"get bus by root")
+                })
+              };
   return (
     <div className='NavBar'>
             <div className='Logo'>
@@ -63,33 +83,37 @@ function NavBar() {
             </div>
 
             <div className='Destination'>
-                  <select name="" id="" >
-                        {
-                                travel.map((obj)=>{
-                                        return(
-                                                <>
-                                                        <option value={obj.from}>{obj.from}</option>
-                                                </>
-                                        )
-                                })
-                        }
-                        
-                    </select> 
-                                      
-                    <select name="" id="" style={{marginLeft:"10px"}}>
+                                <select
+                                        name=""
+                                        id=""
+                                        value={fromValue}
+                                        onChange={(e) => setFromValue(e.target.value)}
+                                >
+                                        {travel.map((obj, index) => (
+                                        <option key={index} value={obj.from}>
+                                        {obj.from}
+                                        </option>
+                                        ))}
+                                </select>
 
-                       {
-                                travel.map((obj)=>{
-                                        return(
-                                                <>
-                                                        <option value={obj.to}>{obj.to}</option>
-                                                </>
-                                        )
-                                })
-                        }
-                    </select>
-                    <button style={{marginLeft:"10px"}} className='plaseSearch'>Search</button>
-            </div>
+                                <select
+                                        name=""
+                                        id=""
+                                        style={{ marginLeft: '10px' }}
+                                        value={toValue}
+                                        onChange={(e) => setToValue(e.target.value)}
+                                >
+                                        {travel.map((obj, index) => (
+                                        <option key={index} value={obj.to}>
+                                        {obj.to}
+                                        </option>
+                                        ))}
+                                </select>
+
+      <button style={{ marginLeft: '10px' }} onClick={handleSearch} className='plaseSearch'>
+        Search
+      </button>
+    </div>
 
 
  <Modal show={show} onHide={handleClose}

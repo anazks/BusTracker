@@ -187,7 +187,20 @@ router.get('/logout',(req,res)=>{
 })
 router.get('/getBus',async(req,res)=>{
   try {
-    let buss = await jurneyModel.find()
+    let buss = await jurneyModel.find({})
+    res.json(buss)
+  } catch (error) {
+    console.log(error)
+      res.json(false)
+  }
+})
+router.post('/getBusByRoot',async(req,res)=>{
+  try {
+    console.log(req.body)
+    let {fromValue} = req.body;
+    let {toValue} = req.body;
+    let buss = await jurneyModel.find({to :fromValue,from :toValue})
+    console.log(buss)
     res.json(buss)
   } catch (error) {
     console.log(error)
