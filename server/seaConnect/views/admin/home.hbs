@@ -455,144 +455,93 @@
                                 <li>
                         {{>adminNav}}
                                    
-                 <div class="app-main__outer">
-                    <div class="app-main__inner">
-                        <div class="app-page-title">
-                            <div class="page-title-wrapper">
-                                <div class="page-title-heading">
-                                    <div class="page-title-icon">
-                                        <i class="pe-7s-car icon-gradient bg-mean-fruit">
-                                        </i>
-                                    </div>
-                                    <div>Analytics Dashboard
-                                        <div class="page-title-subheading">This is an example dashboard created using build-in elements and components.
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="page-title-actions">
-                                    <button type="button" data-toggle="tooltip" title="Example Tooltip" data-placement="bottom" class="btn-shadow mr-3 btn btn-dark">
-                                        <i class="fa fa-star"></i>
-                                    </button>
-                                    <div class="d-inline-block dropdown">
-                                        {{!-- <button type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="btn-shadow dropdown-toggle btn btn-info">
-                                            <span class="btn-icon-wrapper pr-2 opacity-7">
-                                                <i class="fa fa-business-time fa-w-20"></i>
-                                            </span>
-                                            Buttons
-                                        </button> --}}
-                                        <div tabindex="-1" role="menu" aria-hidden="true" class="dropdown-menu dropdown-menu-right">
-                                            <ul class="nav flex-column">
-                                                <li class="nav-item">
-                                                    <a href="javascript:void(0);" class="nav-link">
-                                                        <i class="nav-link-icon lnr-inbox"></i>
-                                                        <span>
-                                                            Inbox
-                                                        </span>
-                                                        <div class="ml-auto badge badge-pill badge-secondary">86</div>
-                                                    </a>
-                                                </li>
-                                                <li class="nav-item">
-                                                    <a href="javascript:void(0);" class="nav-link">
-                                                        <i class="nav-link-icon lnr-book"></i>
-                                                        <span>
-                                                            Book
-                                                        </span>
-                                                        <div class="ml-auto badge badge-pill badge-danger">5</div>
-                                                    </a>
-                                                </li>
-                                                <li class="nav-item">
-                                                    <a href="javascript:void(0);" class="nav-link">
-                                                        <i class="nav-link-icon lnr-picture"></i>
-                                                        <span>
-                                                            Picture
-                                                        </span>
-                                                    </a>
-                                                </li>
-                                                <li class="nav-item">
-                                                    <a disabled href="javascript:void(0);" class="nav-link disabled">
-                                                        <i class="nav-link-icon lnr-file-empty"></i>
-                                                        <span>
-                                                            File Disabled
-                                                        </span>
-                                                    </a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>    </div>
-                        </div>            <div class="row">
-                            <div class="col-md-6 col-xl-4">
-                                <div class="card mb-3 widget-content bg-midnight-bloom">
-                                    <div class="widget-content-wrapper text-white">
-                                        <div class="widget-content-left">
-                                            <div class="widget-heading">Total Employees</div>
-                                            <div class="widget-subheading">Last year expenses</div>
-                                        </div>
-                                        <div class="widget-content-right">
-                                            <div class="widget-numbers text-white"><span>{{employee}}</span></div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-6 col-xl-4">
-                                <div class="card mb-3 widget-content bg-arielle-smile">
-                                    <div class="widget-content-wrapper text-white">
-                                        <div class="widget-content-left">
-                                            <div class="widget-heading">users</div>
-                                            <div class="widget-subheading">Total Clients Profit</div>
-                                        </div>
-                                        <div class="widget-content-right">
-                                            <div class="widget-numbers text-white"><span>{{users}}</span></div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-6 col-xl-4">
-                                <div class="card mb-3 widget-content bg-grow-early">
-                                    <div class="widget-content-wrapper text-white">
-                                        <div class="widget-content-left">
-                                            <div class="widget-heading">Jurneies</div>
-                                            <div class="widget-subheading">{{users}}</div>
-                                        </div>
-                                        <div class="widget-content-right">
-                                            <div class="widget-numbers text-white"><span>46%</span></div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="d-xl-none d-lg-block col-md-6 col-xl-4">
-                                <div class="card mb-3 widget-content bg-premium-dark">
-                                    <div class="widget-content-wrapper text-white">
-                                        <div class="widget-content-left">
-                                            <div class="widget-heading">Total Routes</div>
-                                            <div class="widget-subheading">{{routes}}</div>
-                                        </div>
-                                        <div class="widget-content-right">
-                                            <div class="widget-numbers text-warning"><span>$14M</span></div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                                <div class="row">
-                                    <div class="addBoat"> 
-                                            <h3 style="text-align: center;">Add Bus</h3> 
-                                                    <form  id="contact" action="/admin/add-boat" method="post">
-                                                        <fieldset>
-                                                        <input placeholder="Bus Name" type="text" name="Boatname" tabindex="1" required autofocus>
-                                                        </fieldset>
-                                                        <fieldset>
-                                                        <input placeholder="Bus Number" name="BoatNumber" type="text" tabindex="2" required>
-                                                        </fieldset>
-                                                        <fieldset>
-                                                            <input type="submit" value="Add" class="add">
-                                                        </fieldset>
-                                                    </form>
- 
-  
-</div>
+                 
+                                  
+   {{#if RTO}}
 
+{{else}}
+    <div class="row">
+        <div class="col-md-6 col-xl-4">
+            <div class="card mb-3 widget-content bg-midnight-bloom">
+                <div class="widget-content-wrapper text-white">
+                    <div class="widget-content-left">
+                        <div class="widget-heading">Total Employees</div>
+                        <div class="widget-subheading">Last year expenses</div>
+                    </div>
+                    <div class="widget-content-right">
+                        <div class="widget-numbers text-white"><span>{{employee}}</span></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 col-xl-4">
+            <div class="card mb-3 widget-content bg-arielle-smile">
+                <div class="widget-content-wrapper text-white">
+                    <div class="widget-content-left">
+                        <div class="widget-heading">Users</div>
+                        <div class="widget-subheading">Total Clients Profit</div>
+                    </div>
+                    <div class="widget-content-right">
+                        <div class="widget-numbers text-white"><span>{{users}}</span></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 col-xl-4">
+            <div class="card mb-3 widget-content bg-grow-early">
+                <div class="widget-content-wrapper text-white">
+                    <div class="widget-content-left">
+                        <div class="widget-heading">Journeys</div>
+                        <div class="widget-subheading">{{journeys}}</div>
+                    </div>
+                    <div class="widget-content-right">
+                        <div class="widget-numbers text-white"><span>46%</span></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="d-xl-none d-lg-block col-md-6 col-xl-4">
+            <div class="card mb-3 widget-content bg-premium-dark">
+                <div class="widget-content-wrapper text-white">
+                    <div class="widget-content-left">
+                        <div class="widget-heading">Total Routes</div>
+                        <div class="widget-subheading">{{routes}}</div>
+                    </div>
+                    <div class="widget-content-right">
+                        <div class="widget-numbers text-warning"><span>$14M</span></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{{/if}}
 
+{{#if RTO}}
+
+{{else}}
+    <div class="row">
+        <div class="col-md-6 offset-md-3">
+            <div class="addBus">
+                <h3 style="text-align: center;">Add Bus</h3>
+                <form id="contact" action="/admin/add-boat" method="post">
+                    <fieldset>
+                        <input placeholder="Bus Name" type="text" name="Boatname" tabindex="1" required autofocus>
+                    </fieldset>
+                    <fieldset>
+                        <input placeholder="Bus Number" name="BoatNumber" type="text" tabindex="2" required>
+                    </fieldset>
+                    <fieldset>
+                        <input type="submit" value="Add" class="btn btn-primary">
+                    </fieldset>
+                </form>
+            </div>
+        </div>
+    </div>
+{{/if}}
+
+                        <br><br>
+
+{{#if RTO}}
                                     <div class="addBoat"> 
                                             <h3 style="text-align: center;">Add Route</h3> 
                                                     <form id="contact" action="/admin/add-route" method="post">
@@ -669,6 +618,7 @@
  
   
 </div>
+{{/if}}
                                 </div>
                         <div class="row" style="margin-top: 10px;">
                             <div class="col-md-6 col-xl-4">
@@ -811,7 +761,9 @@
 
 
 
+    {{#if RTO}}
 
+    {{else}}
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="main-card mb-3 card">
@@ -895,6 +847,7 @@
                                 </div>
                             </div>
                         </div>
+                        {{/if}}
                         <div class="row">
                             <div class="col-md-6 col-lg-3">
                                 <div class="card-shadow-danger mb-3 widget-chart widget-chart2 text-left card">

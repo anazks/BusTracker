@@ -89,9 +89,9 @@ function BUsis(props) {
                 <div className="cardss">
                      
                           <div className='bus_Name'>
-                                  <h3>{obj.Boatname} <br />
+                                  <h5>{obj.Boatname} <br />
                                   
-                                  </h3> 
+                                  </h5> 
                                  
                           </div>
                           <div className='bus_data'>

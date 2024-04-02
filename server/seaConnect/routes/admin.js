@@ -6,6 +6,7 @@ var JurneyModel = require('../model/JurneyModel')
 let employeeModel =  require('../model/employeeModel')
 let userModel = require('../model/userModel');
 const bookingModel = require('../model/bookingModel');
+const rtoModel = require('../model/RtoModel')
 const PDFDocument = require('pdfkit');
 const fs = require('fs');
 const { route } = require('.');
@@ -13,6 +14,36 @@ const { route } = require('.');
 router.get('/', function(req, res, next) {
         res.render('admin/Login')
 });
+router.get('/RTO', function(req, res, next) {
+        res.render('admin/RtoLogin')
+});
+router.get('/RtoReg',(req,res)=>{
+        res.render('admin/RtoReg')
+})
+router.post('/RTOReg',async (req,res)=>{
+                try {
+                 let data = await rtoModel.create(req.body)       
+                 console.log("data inserted")
+                 res.redirect('/admin/RTO')
+                } catch (error) {
+                      console.log(error)  
+                }
+})
+router.post('/RTOlogin',async (req,res)=>{
+        try {
+                let {password } = req.body;
+                let {email} = req.body;
+                let data = await rtoModel.find({email:email ,password:password})
+                req.session.rto = data;
+         if(data.length>0){
+                res.redirect('/admin/home')
+         }       
+         console.log("data inserted")
+         res.redirect('/admin/RTO')
+        } catch (error) {
+              console.log(error)  
+        }
+})
 router.get('/home',async (req,res)=>{
         try {
                 let employee = await  employeeModel.count();
@@ -24,7 +55,14 @@ router.get('/home',async (req,res)=>{
                 let jrny = await JurneyModel.find();
                 let boats = await boatModel.find();
                 console.log(employee,"hia") 
-                res.render('admin/home',{employee,users,routes,jurney,routes,jrny,boats,emp,rt})
+                if(req.session.rto){
+                        
+                        res.render('admin/home',{employee,users,routes,jurney,routes,jrny,boats,emp,rt,RTO : true})
+
+                        
+                }else{
+                        res.render('admin/home',{employee,users,routes,jurney,routes,jrny,boats,emp,rt})
+                }
         } catch (error) {
                 console.log(error)      
         }
